@@ -5,9 +5,9 @@ const getNotes = () => 'Your notes...';
 
 const addNote = (title, body) => {
   const notes = loadNotes()
-  const duplicateNotes = notes.filter(note => note.title === title)
+  const duplicateNote = notes.find(note => note.title === title)
 
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNote) {
     notes.push({
       title,
       body,
@@ -35,6 +35,8 @@ const listNotes = () => {
   console.log(chalk.inverse('Listing your notes:'));
   notes.forEach(note => console.log(note.title))
 }
+
+const readNotes = () => {};
 
 const saveNotes = notes => {
   const dataJSON = JSON.stringify(notes);
