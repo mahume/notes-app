@@ -36,7 +36,17 @@ const listNotes = () => {
   notes.forEach(note => console.log(note.title))
 }
 
-const readNotes = () => {};
+const readNote = title => {
+  const notes = loadNotes();
+  const note = notes.find(note => note.title === title);
+  
+  if (note) {
+    console.log(chalk.inverse(note.title));
+    console.log(note.body);
+  } else {
+    console.log(chalk.red.inverse('Note not found'));
+  }
+};
 
 const saveNotes = notes => {
   const dataJSON = JSON.stringify(notes);
@@ -58,4 +68,5 @@ module.exports = {
   addNote,
   removeNote,
   listNotes,
+  readNote,
 };
